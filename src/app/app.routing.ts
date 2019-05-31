@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule,} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {Routes, RouterModule} from '@angular/router';
 
@@ -8,6 +8,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {SignupComponent} from './signup/signup.component';
 import {LandingComponent} from './landing/landing.component';
 import {LoginComponent} from './login/login.component';
+import {DailyComponent} from './daily/daily.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'register', component: SignupComponent},
   {path: 'landing', component: LandingComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'daily', component: DailyComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

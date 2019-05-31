@@ -1,132 +1,299 @@
 <div class="container">
-  <h3 class="h4 text-success font-weight-bold mb-4">Tabs</h3>
+  <h3 class="h4 text-success font-weight-bold mb-4 ">Tabs</h3>
+  Select a date to view the matches
   <div class="row justify-content-center">
-    <div class="col-lg-6">
-      <!-- Tabs with icons -->
-      <div class="mb-3">
-        <small class="text-uppercase font-weight-bold">With icons</small>
-      </div>
-        <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
-            <ngb-tab>
-              <ng-template ngbTabTitle>
-                <i class="ni ni-cloud-upload-96 mr-2"></i> Home
-              </ng-template>
-                <ng-template ngbTabContent>
-                  <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-                  <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-                </ng-template>
-            </ngb-tab>
-            <ngb-tab>
-              <ng-template ngbTabTitle>
-                <i class="ni ni-bell-55 mr-2"></i> Profile
-              </ng-template>
-                <ng-template ngbTabContent>
-                    <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-                </ng-template>
-            </ngb-tab>
-            <ngb-tab>
-              <ng-template ngbTabTitle>
-                  <i class="ni ni-calendar-grid-58 mr-2"></i> Messages
-              </ng-template>
-                <ng-template ngbTabContent>
-                    <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-                </ng-template>
-            </ngb-tab>
-        </ngb-tabset>
-    </div>
     <div class="col-lg-6 mt-5 mt-lg-0">
       <!-- Menu -->
       <div class="mb-3">
-        <small class="text-uppercase font-weight-bold">With text</small>
+        <small class="text-uppercase font-weight-bold">Select a date to view the matches</small>
       </div>
-      <ngb-tabset [justify]="'center'" class="custom-tab-content flex-column flex-md-row" type="pills">
-          <ngb-tab title="Home">
-            <ng-template ngbTabContent>
-              <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-              <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.</p>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Profile">
-            <ng-template ngbTabContent>
-                <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab title="Messages">
-            <ng-template ngbTabContent>
-                <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
-            </ng-template>
-          </ngb-tab>
-      </ngb-tabset>
-    </div>
-  </div>
+      <ngb-tabset orientation="horizontal" [justify]="'start'" class="custom-tab-content flex-column flex-md-row"
+                  type="pills">
+        <ngb-tab title="{{currentDate}}">
+          <ng-template ngbTabContent>
+            <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+              stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+              Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+            <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+              stumptown aliqua, retro synth master cleanse.</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="{{minusOneDate}}">
+          <ng-template ngbTabContent>
+            <p class="description">Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia
+              cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="{{minusTwoDate}}">
+          <ng-template ngbTabContent>
+            <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+              stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+              Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+          </ng-template>
+        </ngb-tab>
+        <ngb-tab title="{{minusThreeDate}}">
+          <ng-template ngbTabContent>
+            <div class="row">
+              <div class="col">
+                <div class="card shadow">
+                  <div class="card-header border-0 text-center">
+                    <h3 class="mb-0">Ticket matches</h3>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Project</th>
+                        <th scope="col">Budget</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Users</th>
+                        <th scope="col">Completion</th>
+                        <th scope="col"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <span class="mb-0 text-sm">Argon Design System</span>
+                            </div>
+                          </div>
+                        </th>
+                        <td>
+                          $2,500 USD
+                        </td>
+                        <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-warning"></i> pending
+                  </span>
+                        </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span class="mr-2">60%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <div ngbDropdown placement="bottom-right">
+                            <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                              <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <span class="mb-0 text-sm">Angular Now UI Kit PRO</span>
+                            </div>
+                          </div>
+                        </th>
+                        <td>
+                          $1,800 USD
+                        </td>
+                        <td>
+                  <span class="badge badge-dot">
+                    <i class="bg-success"></i> completed
+                  </span>
+                        </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span class="mr-2">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <div ngbDropdown  placement="bottom-right">
+                            <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                              <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <span class="mb-0 text-sm">Black Dashboard</span>
+                            </div>
+                          </div>
+                        </th>
+                        <td>
+                          $3,150 USD
+                        </td>
+                        <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-danger"></i> delayed
+                  </span>
+                        </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span class="mr-2">72%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <div ngbDropdown  placement="top-right">
+                            <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                              <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <span class="mb-0 text-sm">React Material Dashboard</span>
+                            </div>
+                          </div>
+                        </th>
+                        <td>
+                          $4,400 USD
+                        </td>
+                        <td>
+                  <span class="badge badge-dot">
+                    <i class="bg-info"></i> on schedule
+                  </span>
+                        </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span class="mr-2">90%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <div ngbDropdown   placement="top-right">
+                            <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                              <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">
+                            <div class="media-body">
+                              <span class="mb-0 text-sm">Vue Paper UI Kit PRO</span>
+                            </div>
+                          </div>
+                        </th>
+                        <td>
+                          $2,200 USD
+                        </td>
+                        <td>
+                  <span class="badge badge-dot mr-4">
+                    <i class="bg-success"></i> completed
+                  </span>
+                        </td>
+                        <td>
+                          <div class="d-flex align-items-center">
+                            <span class="mr-2">100%</span>
+                            <div>
+                              <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="text-right">
+                          <div ngbDropdown   placement="top-right">
+                            <a class="btn btn-sm btn-icon-only text-light"  ngbDropdownToggle>
+                              <i class="fas fa-ellipsis-v"></i>
+                            </a>
+                            <div ngbDropdownMenu class=" dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                              <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="card-footer py-4">
+                    <nav aria-label="...">
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-  <div class="row row-grid justify-content-between align-items-center mt-lg">
-    <div class="col-lg-5">
-      <h3 class="h4 text-success font-weight-bold mb-4">Progress bars</h3>
-      <div class="progress-wrapper">
-        <div class="progress-info">
-          <div class="progress-label">
-            <span>Task completed</span>
-          </div>
-          <div class="progress-percentage">
-            <span>40%</span>
-          </div>
-        </div>
-        <ngb-progressbar type="default" [value]="25"></ngb-progressbar>
-      </div>
-      <div class="progress-wrapper">
-        <div class="progress-info">
-          <div class="progress-label">
-            <span>Task completed</span>
-          </div>
-          <div class="progress-percentage">
-            <span>60%</span>
-          </div>
-        </div>
-        <ngb-progressbar type="primary" [value]="60"></ngb-progressbar>
-      </div>
-    </div>
-    <div class="col-lg-5">
-      <h3 class="h4 text-success font-weight-bold mb-5">Pagination</h3>
-      <nav aria-label="Page navigation example" class="mb-4">
-        <ngb-pagination [collectionSize]="50" [(page)]="page" [directionLinks]="false"></ngb-pagination>
-      </nav>
-      <nav aria-label="Page navigation example">
-        <ngb-pagination [collectionSize]="50" [(page)]="page1" aria-label="Default pagination">
-          <ng-template ngbPaginationPrevious><i _ngcontent-c9="" class="fa fa-angle-left"></i></ng-template>
-          <ng-template ngbPaginationNext><i _ngcontent-c9="" class="fa fa-angle-right"></i></ng-template>
-        </ngb-pagination>
-      </nav>
-    </div>
-  </div>
-  <div class="row row-grid justify-content-between">
-    <div class="col-lg-5">
-      <h3 class="h4 text-success font-weight-bold mb-5">Navigation Pills</h3>
-      <ngb-tabset type="pills" class="nav-pills-circle">
-          <ngb-tab>
-            <ng-template ngbTabTitle>
-              <span class="nav-link-icon d-block"><i class="ni ni-atom"></i></span>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab>
-            <ng-template ngbTabTitle>
-              <span class="nav-link-icon d-block"><i class="ni ni-chat-round"></i></span>
-            </ng-template>
-          </ngb-tab>
-          <ngb-tab>
-            <ng-template ngbTabTitle>
-                <span class="nav-link-icon d-block"><i class="ni ni-cloud-download-95"></i></span>
-            </ng-template>
-          </ngb-tab>
+
+
+            <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+              stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+              Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+          </ng-template>
+        </ngb-tab>
+
+        <ngb-tab title="{{minusFourDate}}">
+          <ng-template ngbTabContent>
+            <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+              stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+              Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+          </ng-template>
+        </ngb-tab>
+
+
+        <ngb-tab title="{{minusFiveDate}}">
+          <ng-template ngbTabContent>
+            <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+              stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+              Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+          </ng-template>
+        </ngb-tab>
+
+
+        <ngb-tab title="{{minusSixDate}}">
+          <ng-template ngbTabContent>
+            <p class="description">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu
+              stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica.
+              Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+          </ng-template>
+        </ngb-tab>
+
+
       </ngb-tabset>
-    </div>
-    <div class="col-lg-5">
-      <h3 class="h4 text-success font-weight-bold mb-5">Labels</h3>
-      <span class="badge badge-pill badge-primary text-uppercase">Primary</span>
-      <span class="badge badge-pill badge-success text-uppercase">Success</span>
-      <span class="badge badge-pill badge-danger text-uppercase">Danger</span>
-      <span class="badge badge-pill badge-warning text-uppercase">Warning</span>
-      <span class="badge badge-pill badge-info text-uppercase">Info</span>
     </div>
   </div>
 </div>
