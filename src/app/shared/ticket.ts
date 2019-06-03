@@ -4,6 +4,6 @@ export class Ticket {
 
   ticketId: bigint;
   date: string;
-  matches: Match[];
+  matchList: Match[];
 
 }

@@ -17,6 +17,8 @@ import { HomeModule } from './home/home.module';
 import { LoginComponent } from './login/login.component';
 import { DailyComponent } from './daily/daily.component';
 import {SectionsModule} from './sections/sections.module';
+import { RestConsumerComponent } from './rest-consumer/rest-consumer.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import {SectionsModule} from './sections/sections.module';
     NavbarComponent,
     FooterComponent,
     LoginComponent,
-    DailyComponent
+    DailyComponent,
+    RestConsumerComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import {SectionsModule} from './sections/sections.module';
     RouterModule,
     AppRoutingModule,
     HomeModule,
-    SectionsModule
+    SectionsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

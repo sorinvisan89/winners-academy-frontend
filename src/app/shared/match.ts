@@ -5,4 +5,5 @@ export class Match {
   tips: string;
   result: string;
   odds: number;
+  date: string;
 }

@@ -1,13 +1,12 @@
 <footer class="footer"
-        [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'}">
+        [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login' && getPath()!=='/daily'}">
   <div class="container">
     <div class="row row-grid align-items-center"
          [ngClass]="{'my-md': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login', 'mb-5':getPath()==='/user-profile' || getPath()==='/register' || getPath()==='/login'}">
-      <div class="col-lg-6">
-        <h3 class="text-primary font-weight-light mb-2">Have a question for us?</h3>
-        <h4 class="mb-0 font-weight-light">Let's get in touch!</h4>
+      <div class="col-lg-7">
+        <h3 class="text-primary font-weight-light mb-2">Have a question for us? Let's get in touch!</h3>
       </div>
-      <div class="col-lg-6 text-lg-center btn-wrapper">
+      <div class="col-lg-5 text-lg-center btn-wrapper">
         <a target="_blank" href="https://www.facebook.com/creativetim"
            class="btn btn-neutral btn-icon-only btn-facebook btn-round btn-lg" ngbTooltip="Like us">
           <i class="fa fa-facebook-square"></i>
