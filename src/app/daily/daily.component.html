@@ -1,88 +1,109 @@
 <main>
-
-  <section class="section section-lg section-hero section-shaped">
-    <div class="shape shape-style-1 shape-primary">
-    </div>
-  </section>
-
-
-  <section class="section section-lg section-shaped pb-250">
-
-    <div class="shape shape-style-1 shape-light">
-    </div>
-
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-12">
-          <!-- Basic elements -->
-          <h2 class="mb-5">
-            <span>Basic Elements</span>
-          </h2>
-          <!-- Buttons -->
-          <h3 class="h4 text-success font-weight-bold mb-4">Buttons</h3>
-          <!-- Button styles -->
-          <div>
-            <button class="btn btn-primary" (click)="getTicket()" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
-            <button class="btn btn-primary" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
-            <button class="btn btn-primary" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
-            <button class="btn btn-primary" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
-            <button class="btn btn-primary" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
-            <button class="btn btn-primary" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
-            <button class="btn btn-primary" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
-            <button class="btn btn-primary" type="button">
-              <span class="btn-inner--text">With icon</span>
-            </button>
+  <div class="position-relative">
+    <!-- Hero for FREE version -->
+    <section class="section section-lg section-hero section-shaped">
+      <!-- Background circles -->
+      <div class="shape shape-style-1 shape-primary">
+        <span class="span-150"></span>
+        <span class="span-50"></span>
+        <span class="span-50"></span>
+        <span class="span-75"></span>
+        <span class="span-100"></span>
+        <span class="span-75"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+        <span class="span-50"></span>
+        <span class="span-100"></span>
+      </div>
+      <div class="container shape-container d-flex align-items-center py-lg">
+        <div class="col px-0">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6 text-center">
+              <div class="col-sm-9">
+                <h1 class="mb-0 text-white">Winners Academy</h1>
+                <h5 class="mb-0 text-white">Let's start winning today!</h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <!-- SVG separator -->
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+             xmlns="http://www.w3.org/2000/svg">
+          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+        </svg>
+      </div>
+    </section>
+  </div>
 
-    <div class="container py-lg-md d-flex">
-
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Match Name</th>
-              <th scope="col">Tips</th>
-              <th scope="col">Odds</th>
-              <th scope="col">Date</th>
-              <th scope="col">Result</th>
-            </tr>
-            </thead>
-
-
-            <tbody>
-            <tr *ngFor="let match of Matches">
-              <th scope="row">{{match.matchId}}</th>
-              <td>{{match.name}}</td>
-              <td>{{match.tips}}</td>
-              <td>{{match.odds}}</td>
-              <td>{{match.date}}</td>
-              <td>{{match.result}}</td>
-              <td>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+  <section class="section section-components pb-0" id="section-components">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+          <h3 class="h2 text-success text-center font-weight-bold mb-4">Free Daily matches</h3>
+          <div>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(currentDate)">{{currentDate}}</button>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(minusOneDate)">{{minusOneDate}}</button>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(minusTwoDate)">{{minusTwoDate}}</button>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(minusThreeDate)">{{minusThreeDate}}</button>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(minusFourDate)">{{minusFourDate}}</button>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(minusFiveDate)">{{minusFiveDate}}</button>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(minusSixDate)">{{minusSixDate}}</button>
+            <button class="btn btn-1 btn-primary" type="button"
+                    (click)="getTicket(minusSevenDate)">{{minusSevenDate}}</button>
+          </div>
         </div>
       </div>
 
+
+      <div class="container py-lg-md d-flex">
+        <div class="table-responsive">
+          <div *ngIf="Matches.length != 0; else noMatches">
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">Match No#</th>
+                <th scope="col">Match Name</th>
+                <th scope="col">Tips</th>
+                <th scope="col">Odds</th>
+                <th scope="col">Date</th>
+                <th scope="col">Result</th>
+              </tr>
+              </thead>
+
+
+              <tbody>
+              <tr *ngFor="let match of Matches">
+                <th scope="row">{{match.matchId}}</th>
+                <td>{{match.name}}</td>
+                <td>{{match.tips}}</td>
+                <td>{{match.odds}}</td>
+                <td>{{match.date}}</td>
+                <td>{{match.result}}</td>
+                <td>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
   </section>
+
+  <ng-template #noMatches>
+        <h3 class="h4 text-center font-weight-bold mb-4">No matches posted yet for this date!</h3>
+  </ng-template>
+
 
 </main>
