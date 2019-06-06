@@ -9,6 +9,8 @@ import {SignupComponent} from './signup/signup.component';
 import {LandingComponent} from './landing/landing.component';
 import {LoginComponent} from './login/login.component';
 import {DailyComponent} from './daily/daily.component';
+import {AdminComponent} from './admin/admin.component';
+import {UserComponent} from './user/user.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -17,6 +19,8 @@ const routes: Routes = [
   {path: 'landing', component: LandingComponent},
   {path: 'login', component: LoginComponent},
   {path: 'daily', component: DailyComponent},
+  {path: 'admin', component: AdminComponent},
+  {path: 'user', component: UserComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

@@ -19,6 +19,8 @@ import { DailyComponent } from './daily/daily.component';
 import {SectionsModule} from './sections/sections.module';
 import { RestConsumerComponent } from './rest-consumer/rest-consumer.component';
 import {HttpClientModule} from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {HttpClientModule} from '@angular/common/http';
     FooterComponent,
     LoginComponent,
     DailyComponent,
-    RestConsumerComponent
+    RestConsumerComponent,
+    AdminComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
