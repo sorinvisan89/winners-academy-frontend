@@ -24,7 +24,7 @@ export class RestConsumerComponent implements OnInit {
 
   public getTicketByDate(ticketDate: string): Observable<Ticket> {
     const requestBody = {ticketDate: ticketDate};
-    return this.httpClient.get<Ticket>(this.apiURL + '/ticket', {params: requestBody});
+    return this.httpClient.get<Ticket>(this.apiURL + '/ticket/daily', {params: requestBody});
   }
 
   public getAllTickets(): Observable<Ticket[]> {

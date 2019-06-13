@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {RestConsumerComponent} from '../rest-consumer/rest-consumer.component';
 import {Match} from '../shared/match';
 import {Ticket} from '../shared/ticket';
 import {DatePipe} from '@angular/common';
+import {NgbCalendar, NgbDate, NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-daily',
@@ -12,33 +13,28 @@ import {DatePipe} from '@angular/common';
 })
 export class DailyComponent implements OnInit {
 
-  currentDate: string;
-  minusOneDate: string;
-  minusTwoDate: string;
-  minusThreeDate: string;
-  minusFourDate: string;
-  minusFiveDate: string;
-  minusSixDate: string;
-  minusSevenDate: string;
-
   Matches: Match[] = [];
 
-  constructor(private restConsumer: RestConsumerComponent, private datePipe: DatePipe) {
-    const now = new Date();
-    this.currentDate = this.datePipe.transform(now, 'yyyy-MM-dd');
-    this.minusOneDate = this.datePipe.transform(new Date().setDate(now.getDate() - 1), 'yyyy-MM-dd');
-    this.minusTwoDate = this.datePipe.transform(new Date().setDate(now.getDate() - 2), 'yyyy-MM-dd');
-    this.minusThreeDate = this.datePipe.transform(new Date().setDate(now.getDate() - 3), 'yyyy-MM-dd');
-    this.minusFourDate = this.datePipe.transform(new Date().setDate(now.getDate() - 4), 'yyyy-MM-dd');
-    this.minusFiveDate = this.datePipe.transform(new Date().setDate(now.getDate() - 5), 'yyyy-MM-dd');
-    this.minusSixDate = this.datePipe.transform(new Date().setDate(now.getDate() - 6), 'yyyy-MM-dd');
-    this.minusSevenDate = this.datePipe.transform(new Date().setDate(now.getDate() - 7), 'yyyy-MM-dd');
+  focus2;
+  minDate: NgbDateStruct;
+  maxDate: NgbDateStruct;
+
+  constructor(private restConsumer: RestConsumerComponent, private calendar: NgbCalendar, private datePipe: DatePipe) {
+    const today = this.calendar.getToday();
+    this.maxDate = today;
+    this.minDate = this.calendar.getPrev(today, 'd', 7);
   }
 
   ngOnInit() {
   }
 
-  getTicket(ticketDate: string) {
+  onDateSelection(event: NgbDate) {
+    const date = new Date(event.year, event.month - 1, event.day);
+    const toFetch = this.datePipe.transform(date, 'yyyy-MM-dd');
+    this.getTicket(toFetch);
+  }
+
+  private getTicket(ticketDate: string) {
     this.restConsumer.getTicketByDate(ticketDate)
       .subscribe(tickets => {
         if (tickets != null) {

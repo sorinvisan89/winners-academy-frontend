@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {User} from '../models/user';
 import {catchError, map, tap} from 'rxjs/operators';
 import {UserPage} from '../models/user-page';
+import {Ticket} from '../shared/ticket';
 
 
 @Injectable({
@@ -11,30 +12,41 @@ import {UserPage} from '../models/user-page';
 })
 export class UserService {
 
-  private url = 'http://localhost:5000/users';
+  private urlAll = 'http://localhost:5000/users';
 
-  private urlPage = 'http://localhost:5000/users?page=';
+  private urlId = 'http://localhost:5000/user/';
 
   constructor(private http: HttpClient) {
   }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.url)
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.urlAll)
       .pipe(
-        catchError(this.handleError('getClient', []))
+        catchError(this.handleError('getAllUsers', []))
       );
   }
 
   getPageUsers(page: number): Observable<UserPage> {
-    let url = this.urlPage;
-    url = url + page + '&size=2';
-    return this.http.get<UserPage>(url)
+    const httpParams = new HttpParams()
+      .set('page', page.toString())
+      .set('size', '6');
+    return this.http.get<UserPage>(this.urlAll, {
+      params: httpParams,
+      responseType: 'json'
+    })
       .pipe(
         map(response => {
           const data = response;
           console.log(data.content);
           return data;
         }));
+  }
+
+  deleteUser(id: bigint): Observable<boolean> {
+    return this.http.delete<boolean>(this.urlId + id)
+      .pipe(
+        catchError(this.handleError('deleteUser', false))
+      );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

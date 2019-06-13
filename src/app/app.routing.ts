@@ -11,6 +11,7 @@ import {LoginComponent} from './login/login.component';
 import {DailyComponent} from './daily/daily.component';
 import {AdminComponent} from './admin/admin.component';
 import {UserComponent} from './user/user.component';
+import {PaymentComponent} from './payment/payment.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'daily', component: DailyComponent},
   {path: 'admin', component: AdminComponent},
   {path: 'user', component: UserComponent},
+  {path: 'payment', component: PaymentComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

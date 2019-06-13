@@ -60,14 +60,123 @@
             </tr>
             </tbody>
           </table>
+
+          <div class="container">
+
+            <div class="row">
+              <div class="col-md-4">
+                <button class="btn btn-block btn-primary mb-3" (click)="open(classic,'' , '')">
+                  Add User
+                </button>
+                <ng-template #classic let-c="close" let-d="dismiss">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h6 class="modal-title" id="modal-title-default">Type your modal title</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                              (click)="d('Cross click')">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                        live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics,
+                        a large language ocean.</p>
+                      <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
+                        It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="c('Close click')">Save changes</button>
+                      <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal" (click)="d('Close click')">Close
+                      </button>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+
+              <div class="col-md-4">
+                <button class="btn btn-block btn-default" (click)="open(classic1, 'modal_mini', 'sm')">
+                  Edit User
+                </button>
+                <ng-template #classic1 let-c="close" let-d="dismiss">
+                  <div class="modal-content">
+                    <div class="modal-body p-0">
+                      <div class="card bg-secondary shadow border-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                          <form>
+                            <h6 class="heading-small text-center mb-4">User information</h6>
+                            <div class="pl-lg-4">
+                              <div class="row">
+                                <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label class="form-control-label" for="input-username">Username</label>
+                                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username">
+                                    <br>
+                                    <label class="form-control-label" for="input-email">Email</label>
+                                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="Email">
+                                    <br>
+                                    <label class="form-control-label" for="input-first-name">Name</label>
+                                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Name">
+                                    <br>
+                                    <label class="form-control-label" for="input-last-name">Type</label>
+                                    <input type="combobox" id="input-last-name" class="form-control form-control-alternative" placeholder="Type">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="c('Close click')">Save changes</button>
+                            <button type="button" class="btn btn-link  ml-auto" data-dismiss="modal" (click)="d('Close click')">Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+
+              <div class="col-md-4">
+                <button class="btn btn-block btn-warning mb-3" (click)="open(classic2, 'Notification', '')">
+                  Delete User
+                </button>
+                <ng-template #classic2 let-c="close" let-d="dismiss">
+                  <div class="modal-content bg-gradient-danger">
+                    <div class="modal-header">
+                      <h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                              (click)="c('Cross click')">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="py-3 text-center">
+                        <i class="ni ni-bell-55 ni-3x"></i>
+                        <h4 class="heading mt-4">Deleting User!</h4>
+                        <p>Are you sure you want to delete the user named: <b>{{selectedUser.name}}</b>?</p>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-white" (click)="deleteUser(selectedUser)">Delete User</button>
+                      <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal" (click)="c('Close click')">Cancel
+                      </button>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+
+
           <div class="card-footer py-4">
             <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
                 <li *ngFor="let page of ' '.repeat(pageUser.totalPages).split(''), let i = index " (click)="onSelect(i)"
                     [class.active]="i === selectedPage" class="page-item active">
-                  <a class="page-link">{{i}}</a></li>
+                  <a class="page-link">{{i + 1}}</a></li>
               </ul>
             </nav>
+
           </div>
 
 

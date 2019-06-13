@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
@@ -21,6 +21,9 @@ import { RestConsumerComponent } from './rest-consumer/rest-consumer.component';
 import {HttpClientModule} from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
+import { PaymentComponent } from './payment/payment.component';
+import {NgxBraintreeModule} from 'ngx-braintree';
+import {NgxStripeModule} from 'ngx-stripe';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { UserComponent } from './user/user.component';
     DailyComponent,
     RestConsumerComponent,
     AdminComponent,
-    UserComponent
+    UserComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +46,12 @@ import { UserComponent } from './user/user.component';
     FormsModule,
     RouterModule,
     AppRoutingModule,
+    BrowserModule,
+    NgxStripeModule.forRoot('pk_test_QqRFoLWOlq5infUOTAWXBjei00AjZa4fT4'),
     HomeModule,
     SectionsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
