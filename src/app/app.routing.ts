@@ -12,6 +12,7 @@ import {DailyComponent} from './daily/daily.component';
 import {AdminComponent} from './admin/admin.component';
 import {UserComponent} from './user/user.component';
 import {PaymentComponent} from './payment/payment.component';
+import {NgbdModalComponent} from './sections/modal/modal.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'admin', component: AdminComponent},
   {path: 'user', component: UserComponent},
   {path: 'payment', component: PaymentComponent},
+  {path: 'modal', component: NgbdModalComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

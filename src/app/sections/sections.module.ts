@@ -17,8 +17,8 @@ import {TypographySectionComponent} from './typography-section/typography-sectio
 import {AngularSectionComponent} from './angular-section/angular-section.component';
 import {NucleoSectionComponent} from './nucleo-section/nucleo-section.component';
 import {VersionsSectionComponent} from './versions-section/versions-section.component';
-import {NgbdModalComponent} from './modal/modal.component';
-import {NgbdModalContent} from './modal/modal.component';
+import {NgbdModalComponent, NgbdModalContent} from './modal/modal.component';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +45,7 @@ import {NgbdModalContent} from './modal/modal.component';
     NouisliderModule,
     JwBootstrapSwitchNg2Module
   ],
-  exports: [SectionsComponent, TabsSectionComponent]
+  exports: [SectionsComponent, TabsSectionComponent, NgbdModalContent]
 })
 export class SectionsModule {
 }
