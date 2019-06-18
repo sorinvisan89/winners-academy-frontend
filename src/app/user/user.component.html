@@ -102,9 +102,13 @@
                                       <input type="text" id="input-first-name" formControlName="name"
                                              class="form-control form-control-alternative" placeholder="Name">
                                       <br>
-                                      <label class="form-control-label text-black-50" for="input-last-name">Type</label>
-                                      <input type="combobox" id="input-last-name" formControlName="type"
-                                             class="form-control form-control-alternative" placeholder="Type">
+                                      <label class="form-control-label text-black-50" for="input-user-type">Type</label>
+                                      <select [(ngModel)]='userTypeSelect' id="input-user-type" formControlName="type"
+                                              class="custom-select-sm form-control form-control-alternative">
+                                        <option>NORMAL</option>
+                                        <option>VIP</option>
+                                        <option>ADMIN</option>
+                                      </select>
                                     </form>
                                   </div>
                                 </div>
@@ -128,7 +132,7 @@
 
               <div class="col-md-4">
                 <button class="btn btn-block btn-warning mb-3" [disabled]="selectedUser == null"
-                        (click)="open(classic2, 'Notification', '')">
+                        (click)="deleteUser2(classic2)">
                   Delete User
                 </button>
                 <ng-template #classic2 let-c="close" let-d="dismiss">
@@ -148,8 +152,8 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-white" (click)="deleteUser(selectedUser)">Delete User
-                      </button>
+                      <button type="button" class="btn btn-white" data-dismiss="modal"
+                              (click)="c('Close click')">Delete User</button>
                       <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal"
                               (click)="c('Close click')">Cancel
                       </button>

@@ -3,15 +3,8 @@ import {User} from '../models/user';
 import {UserPage} from '../models/user-page';
 import {UserService} from '../services/user.service';
 import {ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {Ticket} from '../shared/ticket';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
 
-interface Ion {
-  username: string;
-  name: string;
-  type: string;
-  email: string;
-}
 
 @Component({
   selector: 'app-user',
@@ -22,10 +15,6 @@ interface Ion {
 export class UserComponent implements OnInit {
 
   editUserForm: FormGroup;
-  username: FormControl;
-  name: FormControl;
-  type: FormControl;
-  email: FormControl;
 
   constructor(private userService: UserService, private modalService: NgbModal, private formBuilder: FormBuilder) {
   }
@@ -34,7 +23,7 @@ export class UserComponent implements OnInit {
   pageUser: UserPage;
   selectedPage = 0;
   selectedUser: User;
-  closeResult: string;
+  userTypeSelect = 'NORMAL';
 
   private static getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
@@ -54,7 +43,6 @@ export class UserComponent implements OnInit {
   getPageUsers(requestedPage: number): void {
     this.userService.getPageUsers(requestedPage)
       .subscribe(page => this.pageUser = page);
-
   }
 
   ngOnInit() {
@@ -67,11 +55,6 @@ export class UserComponent implements OnInit {
     this.getPageUsers(0);
   }
 
-
-  liviu() {
-    console.log(this.editUserForm.value, 'liviu ');
-  }
-
   onSelect(page: number): void {
     console.log('selected page : ' + page);
     this.selectedPage = page;
@@ -82,65 +65,40 @@ export class UserComponent implements OnInit {
     this.selectedUser = currentUser;
   }
 
-  deleteUser(toDelete: User) {
+  private deleteUser(toDelete: User) {
     this.userService.deleteUser(toDelete.userId).subscribe(result => console.log(result));
   }
 
-  open(content, type, modalDimension) {
-    if (modalDimension === 'sm' && type === 'modal_mini') {
-      this.miniModal(content);
-    } else if (modalDimension === '' && type === 'Notification') {
-      this.notification(content);
-    } else {
-      this.normalModal(content);
-    }
-  }
-
-
   addUser(content) {
     this.modalService.open(content, {windowClass: 'modal-danger', centered: true}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      console.log(this.editUserForm.value);
-      console.log('bbbb');
-    }, (reason) => {
-      this.closeResult = `Dismissed ${UserComponent.getDismissReason(reason)}`;
+      this.userService.addUser(this.editUserForm.value).subscribe(
+        user => {
+          console.log(user);
+        },
+        error => {
+          console.log(error);
+        }
+      );
     });
   }
 
   editUser(content) {
     this.modalService.open(content, {windowClass: 'modal-danger', centered: true}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      console.log(this.editUserForm.value);
+      this.editUserForm.setValue(this.selectedUser);
     }, (reason) => {
-      this.closeResult = `Dismissed ${UserComponent.getDismissReason(reason)}`;
+
     });
   }
 
-
-  private miniModal(content) {
-    this.modalService.open(content, {windowClass: 'modal-mini', size: 'sm', centered: true}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${UserComponent.getDismissReason(reason)}`;
-    });
-  }
-
-  private notification(content) {
+  deleteUser2(content) {
     this.modalService.open(content, {windowClass: 'modal-danger', centered: true}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      console.log('bbbb');
+      this.userService.deleteUser(this.selectedUser.userId).subscribe(deletedUser => {
+          window.alert('Deleted user: ' + deletedUser);
+        },
+        error => {
+          window.alert('Deleted user failed with error: ' + error);
+        });
     }, (reason) => {
-      console.log('aaa');
-      this.closeResult = `Dismissed ${UserComponent.getDismissReason(reason)}`;
-      reason.close();
-    });
-  }
-
-  private normalModal(content) {
-    this.modalService.open(content, {centered: true}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${UserComponent.getDismissReason(reason)}`;
     });
   }
 

@@ -49,6 +49,10 @@ export class UserService {
       );
   }
 
+  addUser(toAdd: User): Observable<User> {
+    return this.http.post<User>(this.urlId, toAdd);
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
