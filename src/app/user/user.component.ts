@@ -5,6 +5,8 @@ import {UserService} from '../services/user.service';
 import {ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
 
+// import swal from 'sweetalert';
+
 
 @Component({
   selector: 'app-user',
@@ -84,7 +86,7 @@ export class UserComponent implements OnInit {
 
   editUser(content) {
     this.modalService.open(content, {windowClass: 'modal-danger', centered: true}).result.then((result) => {
-      this.editUserForm.setValue(this.selectedUser);
+      this.refreshData();
     }, (reason) => {
 
     });
@@ -93,7 +95,7 @@ export class UserComponent implements OnInit {
   deleteUser2(content) {
     this.modalService.open(content, {windowClass: 'modal-danger', centered: true}).result.then((result) => {
       this.userService.deleteUser(this.selectedUser.userId).subscribe(deletedUser => {
-          window.alert('Deleted user: ' + deletedUser);
+          this.refreshData();
         },
         error => {
           window.alert('Deleted user failed with error: ' + error);
@@ -103,7 +105,16 @@ export class UserComponent implements OnInit {
   }
 
   private refreshData() {
-    this.getPageUsers(0);
+    this.getPageUsers(this.selectedPage);
+    console.log(this.pageUser.content.length);
+    if (this.pageUser.content.length === 1) {
+      if (this.selectedPage !== 0) {
+        this.selectedPage = this.selectedPage - 1;
+        this.getPageUsers(this.selectedPage);
+      } else {
+        this.selectedUser = null;
+      }
+    }
     this.users = this.pageUser.content;
   }
 
