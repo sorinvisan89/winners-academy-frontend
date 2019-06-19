@@ -87,12 +87,6 @@
                                 <div class="col-lg-6">
                                   <div class="form-group">
                                     <form [formGroup]="editUserForm">
-
-                                      <label class="form-control-label text-black-50"
-                                             for="input-username">Username</label>
-                                      <input type="text" id="input-username" formControlName="username"
-                                             class="form-control form-control-alternative" placeholder="Username">
-                                      <br>
                                       <label class="form-control-label text-black-50" for="input-email">Email</label>
                                       <input type="email" id="input-email" formControlName="email"
                                              class="form-control form-control-alternative" placeholder="Email">
@@ -132,7 +126,7 @@
 
               <div class="col-md-4">
                 <button class="btn btn-block btn-warning mb-3" [disabled]="selectedUser == null"
-                        (click)="deleteUser2(classic2)">
+                        (click)="deleteUser(classic2)">
                   Delete User
                 </button>
                 <ng-template #classic2 let-c="close" let-d="dismiss">
@@ -153,7 +147,8 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-white" data-dismiss="modal"
-                              (click)="c('Close click')">Delete User</button>
+                              (click)="c('Close click')">Delete User
+                      </button>
                       <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal"
                               (click)="d('Close click')">Cancel
                       </button>
@@ -168,9 +163,12 @@
           <div class="card-footer py-4">
             <nav aria-label="...">
               <ul class="pagination justify-content-end mb-0">
+
+                <ng-container *ngIf="pageUser != null">
                 <li *ngFor="let page of ' '.repeat(pageUser.totalPages).split(''), let i = index " (click)="onSelect(i)"
                     [class.active]="i === selectedPage" class="page-item active">
                   <a class="page-link">{{i + 1}}</a></li>
+                </ng-container>
               </ul>
             </nav>
 

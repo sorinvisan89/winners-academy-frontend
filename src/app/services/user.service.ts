@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {User} from '../models/user';
-import {catchError, map, tap} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {UserPage} from '../models/user-page';
-import {Ticket} from '../shared/ticket';
 
 
 @Injectable({
@@ -36,9 +35,7 @@ export class UserService {
     })
       .pipe(
         map(response => {
-          const data = response;
-          console.log(data.content);
-          return data;
+          return response;
         }));
   }
 
@@ -51,6 +48,10 @@ export class UserService {
 
   addUser(toAdd: User): Observable<User> {
     return this.http.post<User>(this.urlId, toAdd);
+  }
+
+  editUser(toEdit: User): Observable<User> {
+    return this.http.put<User>(this.urlId + toEdit.userId, toEdit);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
