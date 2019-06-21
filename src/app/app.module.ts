@@ -24,6 +24,7 @@ import { UserComponent } from './user/user.component';
 import { PaymentComponent } from './payment/payment.component';
 import {NgxBraintreeModule} from 'ngx-braintree';
 import {NgxStripeModule} from 'ngx-stripe';
+import {SnackbarModule, SnackbarService} from 'ngx-snackbar';
 
 @NgModule({
   declarations: [
@@ -51,9 +52,10 @@ import {NgxStripeModule} from 'ngx-stripe';
     HomeModule,
     SectionsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SnackbarModule.forRoot()
   ],
-  providers: [NgbActiveModal],
+  providers: [NgbActiveModal, SnackbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

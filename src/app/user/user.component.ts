@@ -4,6 +4,7 @@ import {UserPage} from '../models/user-page';
 import {UserService} from '../services/user.service';
 import {ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
+import {SnackbarService} from 'ngx-snackbar';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class UserComponent implements OnInit {
   editUserForm: FormGroup;
   addUserForm: FormGroup;
 
-  constructor(private userService: UserService, private modalService: NgbModal, private formBuilder: FormBuilder) {
+  constructor(private userService: UserService, private modalService: NgbModal, private formBuilder: FormBuilder, private snackbarService: SnackbarService) {
     this.getPageUsers(0);
   }
 
@@ -64,6 +65,12 @@ export class UserComponent implements OnInit {
           this.refreshData();
         },
         error => {
+          this.snackbarService.add({
+            msg: 'Unable to add!',
+            action: {
+              text: 'Deleted!'
+            }
+          });
           window.alert(error.toLocaleString());
         }
       );
@@ -76,7 +83,10 @@ export class UserComponent implements OnInit {
           this.refreshData();
         },
         error => {
-            window.alert(error.toString());
+          window.alert(error.toString());
+        },
+        () => {
+          window.alert('');
         });
     }, (reason) => {
 
@@ -89,7 +99,15 @@ export class UserComponent implements OnInit {
           this.refreshDataWhenDeleting();
         },
         error => {
-          // TODO
+          window.alert(error());
+        },
+        () => {
+          this.snackbarService.add({
+            msg: 'Unable to add!',
+            action: {
+              text: 'Deleted!'
+            }
+          });
         });
     }, (reason) => {
     });
