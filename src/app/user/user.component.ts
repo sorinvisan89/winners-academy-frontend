@@ -18,7 +18,8 @@ export class UserComponent implements OnInit {
   editUserForm: FormGroup;
   addUserForm: FormGroup;
 
-  constructor(private userService: UserService, private modalService: NgbModal, private formBuilder: FormBuilder, private snackbarService: SnackbarService) {
+  constructor(private userService: UserService, private modalService: NgbModal,
+              private formBuilder: FormBuilder, private snackbarService: SnackbarService) {
     this.getPageUsers(0);
   }
 
@@ -66,14 +67,22 @@ export class UserComponent implements OnInit {
         },
         error => {
           this.snackbarService.add({
-            msg: 'Unable to add!',
+            msg: 'Unable to add user: ' + this.editUserForm.value.name,
             action: {
-              text: 'Deleted!'
+              text: 'Dismiss!'
             }
           });
-          window.alert(error.toLocaleString());
-        }
-      );
+        },
+        () => {
+          this.snackbarService.add({
+            msg: 'Added user: ' + this.editUserForm.value.name,
+            timeout: 5000,
+            action: {
+              text: 'Dismiss!'
+            }
+          });
+        });
+
     });
   }
 
@@ -99,13 +108,19 @@ export class UserComponent implements OnInit {
           this.refreshDataWhenDeleting();
         },
         error => {
-          window.alert(error());
+          this.snackbarService.add({
+            msg: 'Unable to delete user: ' + this.selectedUser.name,
+            action: {
+              text: 'Dismiss!'
+            }
+          });
         },
         () => {
           this.snackbarService.add({
-            msg: 'Unable to add!',
+            msg: 'Deleted user: ' + this.selectedUser.name,
+            timeout: 5000,
             action: {
-              text: 'Deleted!'
+              text: 'Dismiss!'
             }
           });
         });

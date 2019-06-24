@@ -159,6 +159,14 @@ ngb-datepicker {
   }
 }
 
+.center-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
 .custom-day.range{
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;

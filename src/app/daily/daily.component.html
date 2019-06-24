@@ -41,67 +41,15 @@
 
 
     <div class="container">
-      <h3 class="h4 text-success font-weight-bold mt-md mb-4">Datepicker</h3>
-      <div class="row">
+      <div class="center-item row">
         <div class="col-md-4">
-          <small class="d-block text-uppercase font-weight-bold mb-3">Single date</small>
+          <small class="text-uppercase font-weight-bold mb-3 center-item">Ticket Date</small>
           <div class="form-group" [ngClass]="{'focused':focus2===true}">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
               </div>
               <input class="form-control datepicker" placeholder="Select date" name="dp"  [maxDate]="maxDate" [minDate]="minDate" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (focus)="focus2=true" (blur)="focus2=false" type="text" (dateSelect)="onDateSelection($event)" autocomplete="off"/>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8 mt-4 mt-md-0">
-          <small class="d-block text-uppercase font-weight-bold mb-3">Date range</small>
-          <div class="input-daterange datepicker row align-items-center">
-            <div class="col">
-              <div class="form-group" [ngClass]="{'focused':focus3===true}">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                  </div>
-                  <input class="form-control datepicker" placeholder="Select date" name="dp1" [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker" (click)="d1.toggle()" (select)="mama($event)" type="text" [dayTemplate]="t" (dateSelect)="startDateChanged($event)" autocomplete="off" (focus)="focus3=true" (blur)="focus3=false"/>
-                  <ng-template #t let-date let-focused="focused" >
-               <span class="custom-day"
-                     [class.text-white]="isActive(date)"
-                     [class.range-end]="isRangeEnd(date)"
-                     [class.range-start]="isRangeStart(date)"
-                     [class.btn-light]="isActive(date)"
-                     [class.bg-primary]="isActive(date)"
-                     [class.range]="isInRange(date)"
-                     [class.faded]="isInRange(date)"
-               >
-                 {{ date.day }}
-               </span>
-                  </ng-template>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="form-group" [ngClass]="{'focused':focus4===true}">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
-                  </div>
-                  <input class="form-control datepicker" placeholder="Select date" name="dp2" [(ngModel)]="model2" ngbDatepicker #d2="ngbDatepicker" (click)="d2.toggle()" (focus)="focus4=true" (blur)="focus4=false" type="text" [dayTemplate]="t1" (dateSelect)="endDateChanged($event)" autocomplete="off"/>
-                  <ng-template #t1 let-date let-focused="focused" >
-               <span class="custom-day"
-                     [class.text-white]="isActive(date)"
-                     [class.range-end]="isRangeEnd(date)"
-                     [class.range-start]="isRangeStart(date)"
-                     [class.btn-light]="isActive(date)"
-                     [class.bg-primary]="isActive(date)"
-                     [class.range]="isInRange(date)"
-                     [class.faded]="isInRange(date)"
-               >
-                 {{ date.day }}
-               </span>
-                  </ng-template>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -147,7 +95,14 @@
   </section>
 
   <ng-template #noMatches>
-        <h3 class="h4 text-center font-weight-bold mb-4">No matches posted yet for this date!</h3>
+
+        <h3 class="h4 text-center text-success font-weight-bold mb-4">No matches posted yet for this date!</h3>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
   </ng-template>
 
 
