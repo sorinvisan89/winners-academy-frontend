@@ -1,4 +1,5 @@
 import {Match} from './match';
+import {Outcome} from './Outcome';
 
 export class Ticket {
 
@@ -6,6 +7,6 @@ export class Ticket {
   date: string;
   totalOdds: number;
   matchList: Match[];
-  status: string;
+  status: Outcome;
 
 }

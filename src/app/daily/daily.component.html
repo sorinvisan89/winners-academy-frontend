@@ -1,41 +1,106 @@
 <main>
+
   <div class="position-relative">
-    <!-- Hero for FREE version -->
-    <section class="section section-lg section-hero section-shaped">
-      <!-- Background circles -->
-      <div class="shape shape-style-1 shape-primary">
-        <span class="span-150"></span>
-        <span class="span-50"></span>
-        <span class="span-50"></span>
-        <span class="span-75"></span>
-        <span class="span-100"></span>
-        <span class="span-75"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
+    <!-- shape Hero -->
+    <section class="section section-lg section-shaped pb-250">
+      <div class="shape shape-style-1 shape-default">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="container shape-container d-flex align-items-center py-lg">
+      <div class="container py-lg-md d-flex">
         <div class="col px-0">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6 text-center">
-              <div class="col-sm-9">
-                <h1 class="mb-0 text-white">Winners Academy</h1>
-                <h5 class="mb-0 text-white">Let's start winning today!</h5>
+          <div class="row">
+            <div class="container shape-container d-flex align-items-center py-lg">
+              <div class="col px-0">
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-lg-6 text-center">
+                    <div class="col-sm-9">
+                      <h1 class="mb-0 text-white">Winners Academy</h1>
+                      <h5 class="mb-0 text-white">Let's start winning today!</h5>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+
+            <div class="card shadow shadow-lg--hover mt-5">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-blue rounded-circle text-white">
+                      <i class="ni ni-active-40"></i>
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <h5 class="title text-blue">Free daily Matches!</h5>
+                    <p>Browse through our daily free posted matches!</p>
+                    <p>As a non-member, you will be limited to today and the last 7 days tickets!</p>
+                    <button class="btn btn-1 btn-primary" type="button" [routerLink]="['/register']" >Daily Matches</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card shadow shadow-lg--hover mt-5">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                      <i class="ni ni-satisfied"></i>
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <h5 class="title text-success">Members Section</h5>
+                    <p>Login to access the full history of matches and also to view the VIP matches!</p>
+                    <p>You get access the extra VIP daily matches which have bigger odds and also other benefits</p>
+                    <button class="btn btn-1 btn-success" type="button" [routerLink]="['/login']" >Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card shadow shadow-lg--hover mt-5">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                      <i class="ni ni-shop"></i>
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <h5 class="title text-warning">Register now!</h5>
+                    <p>Not a member?</p>
+                    <p>Register now and gain access to the full contents and matches!</p>
+                    <p>Only one time payment registration required and </p>
+                    <button class="btn btn-1 btn-warning" type="button" [routerLink]="['/register']" >Register</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
       <!-- SVG separator -->
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
-             xmlns="http://www.w3.org/2000/svg">
+      <div class="separator separator-bottom separator-skew">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>
     </section>
   </div>
+
 
   <section class="section section-components pb-0" id="section-components">
 
@@ -49,15 +114,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
               </div>
-              <input class="form-control datepicker" placeholder="Select date" name="dp"  [maxDate]="maxDate" [minDate]="minDate" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" (focus)="focus2=true" (blur)="focus2=false" type="text" (dateSelect)="onDateSelection($event)" autocomplete="off"/>
+              <input class="form-control datepicker" name="dp" [maxDate]="maxDate"
+                     [minDate]="minDate" [startDate]="today" ngbDatepicker #d="ngbDatepicker"
+                     (click)="d.toggle()"
+                     (focus)="focus2=true" (blur)="focus2=false" type="text" (dateSelect)="onDateSelection($event)"
+                     autocomplete="off"/>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
 
       <div class="container py-lg-md d-flex">
         <div class="table-responsive">
@@ -82,10 +147,17 @@
                 <th scope="row">{{match.tips}}</th>
                 <th scope="row">{{match.odds}}</th>
                 <td>{{match.date}}</td>
-                <td>{{match.result}}</td>
+                <td > {{match.result}}</td>
               </tr>
               </tbody>
             </table>
+
+            <div class="pt-4 text-center">
+              <h5 class="title">
+                <span class="d-block mb-1">Total Odds: <b>{{ticketOdds}}</b></span>
+                <span class="d-block mb-1">Ticket Result: <b>{{ticketResult}}</b></span>
+              </h5>
+            </div>
           </div>
         </div>
       </div>
@@ -95,8 +167,9 @@
   </section>
 
   <ng-template #noMatches>
-
-        <h3 class="h4 text-center text-success font-weight-bold mb-4">No matches posted yet for this date!</h3>
+    <h5 class="title">
+      <span class="d-block mb-1 text-center font-weight-bold mb-4">No matches posted yet for this date!</span>
+    </h5>
     <br>
     <br>
     <br>
@@ -105,5 +178,5 @@
     <br>
   </ng-template>
 
-
 </main>
+
