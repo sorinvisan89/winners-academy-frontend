@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SnackbarService} from 'ngx-snackbar';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
+import {UserType} from '../models/user-type';
 
 @Component({
   selector: 'app-signup',
@@ -32,6 +33,7 @@ export class SignupComponent implements OnInit {
 
   registerUser() {
     const newUser: User = this.signupForm.value;
+    newUser.type = UserType.NORMAL;
     this.userService.addUser(newUser).subscribe(
       user => {
 

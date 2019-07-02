@@ -1,5 +1,5 @@
 import {Match} from './match';
-import {Outcome} from './Outcome';
+import {Outcome} from '../models/outcome';
 
 export class Ticket {
 

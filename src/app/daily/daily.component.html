@@ -15,7 +15,7 @@
         <span></span>
       </div>
       <div class="container py-lg-md d-flex">
-        <div class="col px-0">
+        <div class="col px-0" style="display: inline-flex; flex-direction:column; align-items:baseline;">
           <div class="row">
             <div class="container shape-container d-flex align-items-center py-lg">
               <div class="col px-0">
@@ -31,7 +31,7 @@
             </div>
 
 
-            <div class="card shadow shadow-lg--hover mt-5">
+            <div class="card shadow shadow-lg--hover mt-5" style="width:100%">
               <div class="card-body">
                 <div class="d-flex px-3">
                   <div>
@@ -40,9 +40,9 @@
                     </div>
                   </div>
                   <div class="pl-4">
-                    <h5 class="title text-blue">Free daily Matches!</h5>
-                    <p>Browse through our daily free posted matches!</p>
-                    <p>As a non-member, you will be <b>limited to today and the last 7 days tickets!</b></p>
+                    <div class="home-title text-blue">Free daily Matches!</div>
+                    <div >Browse through our daily free posted matches!</div>
+                    <div> As a non-member, you will be limited to today and the last 7 days tickets!</div>
                     <button class="btn btn-1 btn-primary" type="button" [routerLink]="['/register']" >Daily Matches</button>
                   </div>
                 </div>
@@ -50,7 +50,7 @@
             </div>
 
 
-            <div class="card shadow shadow-lg--hover mt-5">
+            <div class="card shadow shadow-lg--hover mt-5" style="width:100%">
               <div class="card-body">
                 <div class="d-flex px-3">
                   <div>
@@ -59,7 +59,7 @@
                     </div>
                   </div>
                   <div class="pl-4">
-                    <h5 class="title text-success">Members Section</h5>
+                    <div class="title text-success">Members Section</div>
                     <p>Login to access the full history of matches and also to view the VIP matches!</p>
                     <p>You get access <b>the extra VIP daily matches which have bigger odds and also other benefits</b></p>
                     <button class="btn btn-1 btn-success" type="button" [routerLink]="['/login']" >Login</button>
@@ -69,7 +69,7 @@
             </div>
 
 
-            <div class="card shadow shadow-lg--hover mt-5">
+            <div class="card shadow shadow-lg--hover mt-5" style="width:100%">
               <div class="card-body">
                 <div class="d-flex px-3">
                   <div>

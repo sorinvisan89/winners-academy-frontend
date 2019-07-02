@@ -15,21 +15,92 @@
         <span class="span-50"></span>
         <span class="span-100"></span>
       </div>
-      <div class="container shape-container d-flex align-items-center py-lg">
-        <div class="col px-0">
-          <div class="row align-items-center justify-content-center">
-            <div class="col-lg-6 text-center">
-              <div class="col-sm-9">
-                <h1 class="mb-0 text-white">Winners Academy</h1>
-                <h5 class="mb-0 text-white">Let's start winning today!</h5>
+
+      <div class="container py-lg-md d-flex">
+        <div class="col px-0" style="display: inline-flex; flex-direction:column; align-items:baseline;">
+          <div class="row">
+            <div class="container shape-container d-flex align-items-center py-lg">
+              <div class="col px-0">
+                <div class="row align-items-center justify-content-center">
+                  <div class="col-lg-6 text-center">
+                    <div class="col-sm-9">
+                      <h1 class="mb-0 text-white">Winners Academy</h1>
+                      <h5 class="mb-0 text-white">Let's start winning today!</h5>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <div class="card shadow shadow-lg--hover mt-5" style="width:100%">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-blue rounded-circle text-white">
+                      <i class="ni ni-active-40"></i>
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <div class="home-title text-blue">Free daily Matches!</div>
+                    <div>Browse through our daily free posted matches!</div>
+                    <div> As a non-member, you will be limited to today and the last 7 days tickets!</div>
+                    <button class="btn btn-1 btn-primary" type="button" [routerLink]="['/daily']">Daily Matches
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card shadow shadow-lg--hover mt-5" style="width:100%">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                      <i class="ni ni-satisfied"></i>
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <h5 class="title text-success">Members Area!</h5>
+                    <p>Login to access the full history of matches and also to view the VIP matches!</p>
+                    <p>You get access <b>the extra VIP daily matches which have bigger odds and also other benefits</b>
+                    </p>
+                    <button class="btn btn-1 btn-success" type="button" [routerLink]="['/login']">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card shadow shadow-lg--hover mt-5" style="width:100%">
+              <div class="card-body">
+                <div class="d-flex px-3">
+                  <div>
+                    <div class="icon icon-shape bg-gradient-warning rounded-circle text-white">
+                      <i class="ni ni-shop"></i>
+                    </div>
+                  </div>
+                  <div class="pl-4">
+                    <h5 class="title text-warning">Register now!</h5>
+                    <p>Not a member?</p>
+                    <p>Register now and gain access to the full contents and matches!</p>
+                    <p><b>Only one time payment registration required! </b></p>
+                    <button class="btn btn-1 btn-warning" type="button" [routerLink]="['/register']">Register</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
+
+
       <!-- SVG separator -->
       <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1"
+             xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
         </svg>
       </div>

@@ -1,4 +1,4 @@
-import {Outcome} from './Outcome';
+import {Outcome} from '../models/outcome';
 
 export class Match {
 

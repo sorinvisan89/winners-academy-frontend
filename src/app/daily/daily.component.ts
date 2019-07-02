@@ -4,7 +4,7 @@ import {Match} from '../shared/match';
 import {Ticket} from '../shared/ticket';
 import {DatePipe} from '@angular/common';
 import {NgbCalendar, NgbDate, NgbDateParserFormatter, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-import {Outcome} from '../shared/Outcome';
+import {Outcome} from '../models/outcome';
 
 @Component({
   selector: 'app-daily',
