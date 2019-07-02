@@ -5,33 +5,45 @@ import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {UserType} from '../models/user-type';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  focus;
-  focus1;
-  focus2;
+  focus: boolean;
+  focus1: boolean;
+  focus2: boolean;
+  submitted: boolean;
 
   signupForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private snackbarService: SnackbarService,
-              private userService: UserService) {
+    private snackbarService: SnackbarService,
+    private userService: UserService) {
   }
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
       name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       privacyPolicy: new FormControl(false, [Validators.pattern('true')])
     });
   }
 
+  get f() {
+    return this.signupForm.controls;
+  }
+
   registerUser() {
+    this.submitted = true;
+
+    if (this.signupForm.invalid) {
+      return;
+    }
+
     const newUser: User = this.signupForm.value;
     newUser.type = UserType.NORMAL;
     this.userService.addUser(newUser).subscribe(

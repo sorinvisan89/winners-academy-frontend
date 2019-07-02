@@ -24,7 +24,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false" formControlName="name">
+                    <input class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false"
+                      formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">Username is required</div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-group" [ngClass]="{'focused':focus1===true}">
@@ -32,21 +36,35 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Email" type="email" (focus)="focus1=true" (blur)="focus1=false" formControlName="email">
+                    <input class="form-control" placeholder="Email" type="email" (focus)="focus1=true"
+                      [ngClass]="{ 'is-invalid': submitted && f.email.errors }" (blur)="focus1=false"
+                      formControlName="email">
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                      <div *ngIf="f.email.errors.required">Email is required</div>
+                      <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                    </div>
                   </div>
                 </div>
+
                 <div class="form-group" [ngClass]="{'focused':focus2===true}">
                   <div class="input-group input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                     </div>
-                    <input class="form-control" placeholder="Password" type="password" (focus)="focus2=true" (blur)="focus2=false" formControlName="password">
+                    <input class="form-control" placeholder="Password" type="password" (focus)="focus2=true"
+                      (blur)="focus2=false" formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
                   </div>
                 </div>
+
                 <div class="row my-4">
                   <div class="col-12">
                     <div class="custom-control custom-control-alternative custom-checkbox">
-                      <input class="custom-control-input" id="customCheckRegister" type="checkbox" formControlName="privacyPolicy">
+                      <input class="custom-control-input" id="customCheckRegister" type="checkbox"
+                        formControlName="privacyPolicy">
                       <label class="custom-control-label" for="customCheckRegister">
                         <span>I agree with the
                           <a href="javascript:void(0)">Privacy Policy</a>
@@ -56,7 +74,8 @@
                   </div>
                 </div>
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4" (click)="registerUser() " [disabled]="!signupForm.valid">Create account</button>
+                  <button type="button" class="btn btn-primary mt-4" (click)="registerUser() "
+                    [disabled]="!f.privacyPolicy.valid">Create account</button>
                 </div>
               </form>
             </div>
