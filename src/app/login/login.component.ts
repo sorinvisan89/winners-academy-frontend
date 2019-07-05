@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
+import {first} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +15,13 @@ export class LoginComponent implements OnInit {
   focus1: boolean;
   submitted: boolean;
   loginForm: FormGroup;
+  loading = false;
+  error = '';
 
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder,
+              private authService: AuthService,
+              private router: Router) {
 
   }
 
@@ -29,13 +37,25 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.loading = true;
     this.submitted = true;
+    this.error = '';
 
     if (this.loginForm.invalid) {
-
+      this.loading = false;
       return;
     }
 
+    this.authService.login(this.f.email.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['/daily']);
+        },
+        error => {
+          this.error = 'Login failed!';
+          this.loading = false;
+        });
   }
 
 }
