@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SnackbarService} from 'ngx-snackbar';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
-import {UserType} from '../models/user-type';
+import {Role} from '../models/role';
 import {Router} from '@angular/router';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
@@ -50,7 +50,7 @@ export class SignupComponent implements OnInit {
     }
 
     const newUser: User = this.signupForm.value;
-    newUser.type = UserType.NORMAL;
+    newUser.type = Role.NORMAL;
     this.userService.addUser(newUser).subscribe(
       user => {
 

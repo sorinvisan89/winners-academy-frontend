@@ -3,15 +3,24 @@ import {Http} from '@angular/http';
 import {User} from '../models/user';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthenticationService {
+
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
 
   login(email: string, password: string) {
 
@@ -25,6 +34,7 @@ export class AuthService {
         if (user) {
           user.authdata = window.btoa(email + ':' + password);
           localStorage.setItem('currentUser', JSON.stringify(user));
+          this.currentUserSubject.next(user);
         }
 
         return user;
@@ -32,6 +42,7 @@ export class AuthService {
   }
 
   logout() {
-
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
   }
 }

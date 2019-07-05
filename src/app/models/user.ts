@@ -1,4 +1,4 @@
-import {UserType} from './user-type';
+import {Role} from './role';
 
 export class User {
 
@@ -6,5 +6,5 @@ export class User {
   name: string;
   password: string;
   email: string;
-  type: UserType;
+  type: Role;
 }

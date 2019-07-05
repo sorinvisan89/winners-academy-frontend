@@ -1,7 +1,7 @@
-export enum UserType {
+export enum Role {
   NORMAL,
 
   ADMIN,
 
   VIP
-};
+}

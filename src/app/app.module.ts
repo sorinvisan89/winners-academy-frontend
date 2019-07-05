@@ -18,7 +18,7 @@ import {LoginComponent} from './login/login.component';
 import {DailyComponent} from './daily/daily.component';
 import {SectionsModule} from './sections/sections.module';
 import {RestConsumerComponent} from './rest-consumer/rest-consumer.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AdminComponent} from './admin/admin.component';
 import {UserComponent} from './user/user.component';
 import {PaymentComponent} from './payment/payment.component';
@@ -26,6 +26,8 @@ import {NgxBraintreeModule} from 'ngx-braintree';
 import {NgxStripeModule} from 'ngx-stripe';
 import {SnackbarModule, SnackbarService} from 'ngx-snackbar';
 import {ConfirmModalComponent, ConfirmService, ConfirmState, ConfirmTemplateDirective} from './modals/confirm.service';
+import {BasicAuthInterceptor} from './services/basic-auth.interceptor';
+import {ErrorInterceptor} from './services/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,13 @@ import {ConfirmModalComponent, ConfirmService, ConfirmState, ConfirmTemplateDire
     ReactiveFormsModule,
     SnackbarModule.forRoot()
   ],
-  providers: [NgbActiveModal, SnackbarService, ConfirmService, ConfirmState],
+  providers: [NgbActiveModal,
+    SnackbarService,
+    ConfirmService,
+    ConfirmState,
+    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
