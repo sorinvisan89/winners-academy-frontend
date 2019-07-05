@@ -4,6 +4,8 @@ import {SnackbarService} from 'ngx-snackbar';
 import {User} from '../models/user';
 import {UserService} from '../services/user.service';
 import {UserType} from '../models/user-type';
+import {Router} from '@angular/router';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -11,6 +13,7 @@ import {UserType} from '../models/user-type';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
+
 export class SignupComponent implements OnInit {
   focus: boolean;
   focus1: boolean;
@@ -20,8 +23,10 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    private snackbarService: SnackbarService,
-    private userService: UserService) {
+              private snackbarService: SnackbarService,
+              private userService: UserService,
+              private router: Router,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -51,6 +56,7 @@ export class SignupComponent implements OnInit {
 
       },
       error => {
+        // this.modalService.open();
         this.snackbarService.add({
           msg: 'Unable to register user: ' + newUser.name,
           action: {
@@ -66,6 +72,7 @@ export class SignupComponent implements OnInit {
             text: 'Dismiss!'
           }
         });
+        this.router.navigate(['/user-profile']);
       });
   }
 }

@@ -5,6 +5,7 @@ import {UserService} from '../services/user.service';
 import {ModalDismissReasons, NgbActiveModal, NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {FormBuilder, FormControl, FormGroup, Validator, Validators} from '@angular/forms';
 import {SnackbarService} from 'ngx-snackbar';
+import {ConfirmService} from '../modals/confirm.service';
 
 
 @Component({
@@ -18,8 +19,11 @@ export class UserComponent implements OnInit {
   editUserForm: FormGroup;
   addUserForm: FormGroup;
 
-  constructor(private userService: UserService, private modalService: NgbModal,
-              private formBuilder: FormBuilder, private snackbarService: SnackbarService) {
+  constructor(private userService: UserService,
+              private modalService: NgbModal,
+              private formBuilder: FormBuilder,
+              private snackbarService: SnackbarService,
+              private confirmService: ConfirmService) {
     this.getPageUsers(0);
   }
 
@@ -103,29 +107,32 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(content) {
-    this.modalService.open(content, {windowClass: 'modal-danger', centered: true}).result.then((result) => {
-      this.userService.deleteUser(this.selectedUser.userId).subscribe(deletedUser => {
-          this.refreshDataWhenDeleting();
-        },
-        error => {
-          this.snackbarService.add({
-            msg: 'Unable to delete user: ' + this.selectedUser.name,
-            action: {
-              text: 'Dismiss!'
-            }
+    this.confirmService.confirm({title: 'Confirm deletion', message: 'Do you really want to delete ' + this.selectedUser.name + '?'}).then(
+      () => {
+        this.userService.deleteUser(this.selectedUser.userId).subscribe(deletedUser => {
+            this.refreshDataWhenDeleting();
+          },
+          error => {
+            this.snackbarService.add({
+              msg: 'Unable to delete user: ' + this.selectedUser.name,
+              action: {
+                text: 'Dismiss!'
+              }
+            });
+          },
+          () => {
+            this.snackbarService.add({
+              msg: 'Deleted user: ' + this.selectedUser.name,
+              timeout: 5000,
+              action: {
+                text: 'Dismiss!'
+              }
+            });
           });
-        },
-        () => {
-          this.snackbarService.add({
-            msg: 'Deleted user: ' + this.selectedUser.name,
-            timeout: 5000,
-            action: {
-              text: 'Dismiss!'
-            }
-          });
-        });
-    }, (reason) => {
-    });
+      },
+      () => {
+
+      });
   }
 
   private refreshDataWhenDeleting() {

@@ -75,6 +75,7 @@
                         [disabled]="selectedUser == null">
                   Edit User
                 </button>
+
                 <ng-template #classic1 let-c="close" let-d="dismiss">
                   <div class="modal-content">
                     <div class="modal-body p-0">
@@ -129,6 +130,11 @@
                         (click)="deleteUser(classic2)">
                   Delete User
                 </button>
+
+                <ng-template appConfirm>
+                  <app-confirm-modal-component></app-confirm-modal-component>
+                </ng-template>
+
                 <ng-template #classic2 let-c="close" let-d="dismiss">
                   <div class="modal-content bg-gradient-danger">
                     <div class="modal-header">
