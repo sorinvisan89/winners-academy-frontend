@@ -14,6 +14,7 @@ import {UserComponent} from './user/user.component';
 import {PaymentComponent} from './payment/payment.component';
 import {AuthGuard} from './services/auth-guard.service';
 import {Role} from './models/role';
+import {UnauthorizedComponent} from './unauthorized/unauthorized.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -32,6 +33,7 @@ const routes: Routes = [
     }
   },
   {path: 'payment', component: PaymentComponent},
+  {path: 'unathorized', component: UnauthorizedComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'}
 ];
 

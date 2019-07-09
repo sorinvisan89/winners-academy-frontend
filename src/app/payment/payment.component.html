@@ -40,10 +40,13 @@
 
   <div class="container shape-container d-flex align-items-center py-lg">
 
-    <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
-      <input type="text" formControlName="name" placeholder="Jane Doe">
+    <!--    <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">-->
+    <form (ngSubmit)="buy()" [formGroup]="stripeTest">
+      <input type="text" formControlName="name" placeholder="Card Holder Name">
+      <br>
+      <br>
       <div id="card-element" class="field"></div>
-      <button type="submit">
+      <button type="button" class="btn btn-primary my-4" (click)="buy()">
         BUY
       </button>
     </form>

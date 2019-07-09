@@ -8,5 +8,6 @@ export class Ticket {
   totalOdds: number;
   matchList: Match[];
   status: Outcome;
+  ticketType: string;
 
 }

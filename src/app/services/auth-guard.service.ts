@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
     console.log(currentUser.type);
     if (currentUser) {
       if (route.data.roles && route.data.roles.indexOf(currentUser.type) === -1) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/unauthorized']);
         return false;
       }
       return true;

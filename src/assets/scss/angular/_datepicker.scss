@@ -165,6 +165,15 @@ ngb-datepicker {
   justify-content: center;
 }
 
+.flex-column-direction {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row-direction {
+  display: flex;
+  flex-direction: row;
+}
 
 
 .custom-day.range{

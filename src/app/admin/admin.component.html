@@ -40,7 +40,7 @@
 
   <section class="section section-components pb-0" id="section-tickets">
     <div class="container">
-      <div class="container py-lg-md d-flex">
+      <div class="container py-lg-md d-flex flex-column-direction">
         <div class="table-responsive">
 
           <div *ngIf="currentTickets.length != 0">
@@ -54,15 +54,18 @@
                 <th scope="col">Date</th>
                 <th scope="col">Total Odds</th>
                 <th scope="col">Status</th>
+                <th scope="col">Type</th>
               </tr>
               </thead>
 
               <tbody>
-              <tr *ngFor="let ticket of currentTickets" (click)="selectTicket(ticket)" [class.active]="ticket == selectedTicket">
+              <tr *ngFor="let ticket of currentTickets" (click)="selectTicket(ticket)"
+                  [class.active]="ticket == selectedTicket">
                 <th scope="row">{{ticket.ticketId}}</th>
-                <td>{{ticket.date}}</td>
+                <td>{{ticket.date | dateFormatPipe | date: 'dd-MM-yyyy'}}</td>
                 <th scope="row">{{ticket.totalOdds}}</th>
                 <td>{{ticket.status}}</td>
+                <td>{{ticket.ticketType}}</td>
               </tr>
               </tbody>
             </table>
@@ -83,18 +86,28 @@
 
               <tbody>
               <tr *ngFor="let match of currentMatches">
-                <td>{{match.matchId}}<td>
+                <td>{{match.matchId}}
+                <td>
                 <td>{{match.name}}</td>
-                <td>{{match.odds}}<td>
+                <td>{{match.odds}}
+                <td>
               </tr>
               </tbody>
             </table>
+
+
           </div>
 
 
         </div>
+        <div class="center-item">
+          <button class="btn btn-1 btn-primary center-item" type="button" [routerLink]="['/register']">Add Ticket
+          </button>
+        </div>
       </div>
     </div>
+
+
   </section>
 
 </main>

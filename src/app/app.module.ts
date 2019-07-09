@@ -28,6 +28,9 @@ import {SnackbarModule, SnackbarService} from 'ngx-snackbar';
 import {ConfirmModalComponent, ConfirmService, ConfirmState, ConfirmTemplateDirective} from './modals/confirm.service';
 import {BasicAuthInterceptor} from './services/basic-auth.interceptor';
 import {ErrorInterceptor} from './services/error.interceptor';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import {DatePipe} from '@angular/common';
+import {DateFormatPipe} from './services/string-to-date.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import {ErrorInterceptor} from './services/error.interceptor';
     UserComponent,
     PaymentComponent,
     ConfirmModalComponent,
-    ConfirmTemplateDirective
+    ConfirmTemplateDirective,
+    UnauthorizedComponent,
+    DateFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,7 @@ import {ErrorInterceptor} from './services/error.interceptor';
     SnackbarService,
     ConfirmService,
     ConfirmState,
+    DatePipe,
     {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
   ],
