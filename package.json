@@ -24,7 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "4.1.0",
     "braintree": "^2.17.0",
     "jw-bootstrap-switch-ng2": "2.0.5",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng2-nouislider": "1.7.13",
     "ngx-braintree": "^6.1.4",
     "ngx-snackbar": "^2.0.1",
